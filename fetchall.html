@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>PDOStatement::fetchAll</title>
+  <style media="screen">
+    body { margin:2em; }
+    section { margin-bottom:4em;  }
+    #content h2 { font-family:monospace; }
+    li { margin:0.3em; }
+    .index li a { text-decoration:none; font-family:monospace; }
+    .index li a:hover { text-decoration:underline; }
+    pre {
+      display:inline-block;
+      font-size:0.9em;
+      background-color:#eee;
+      padding:1em;
+    }
+  </style>
+</head>
+<body>
+  <section id="index">
+    <h1>PDOStatement::fetchAll</h1>
+    <h2>Índice </h2>
+    <ul class="index">
+      <li><a href="#f1">fetchAll ( PDO::FETCH_BOTH )</a></li>
+      <li><a href="#f2">fetchAll ( PDO::FETCH_ASSOC )</a></li>
+      <li><a href="#fa">fetchAll ( PDO::FETCH_OBJ )</a></li>
+      <li><a href="#f3">fetchAll ( PDO::FETCH_CLASS )</a></li>
+      <li><a href="#f4">fetchAll ( PDO::FETCH_COLUMN )</a></li>
+      <li><a href="#f5">fetchAll ( PDO::FETCH_NUM )</a></li>
+      <li><a href="#f6">fetchAll ( PDO::FETCH_GROUP )</a></li>
+      <li><a href="#f7">fetchAll ( PDO::FETCH_GROUP | PDO::FETCH_ASSOC )</a></li>
+      <li><a href="#f8">fetchAll ( PDO::FETCH_GROUP | PDO::FETCH_NUM )</a></li>
+      <li><a href="#f9">fetchAll ( PDO::FETCH_GROUP | PDO::FETCH_COLUMN )</a></li>
+      <li><a href="#fb">fetch ( PDO::FETCH_LAZY )</a></li>
+      <li><a href="#fc">fetchAll ( PDO::FETCH_KEY_PAIR )</a></li>
+      <li><a href="#fd">fetchAll ( PDO::FETCH_UNIQUE )</a></li>
+      <li><a href="#fe">fetchAll ( PDO::FETCH_UNIQUE | PDO::FETCH_ASSOC )</a></li>
+    </ul>
+    <h2>Enlaces</h2>
+    <ul>
+      <li><a href="https://phpdelusions.net/pdo/fetch_modes">PDO Fetch Modes</a> — phpdelusions.net</li>
+    </ul>
+  </section>
+  <section id="content">
+    <h2 id="f1">fetchAll(PDO::FETCH_BOTH)</h2>
+    <p>Array indexado de arrays indexados y asociativos</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [0] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; ALFKI
+            [1] =&gt; ALFKI
+            [empresa] =&gt; Alfreds Futterkiste
+            [2] =&gt; Alfreds Futterkiste
+            [contacto] =&gt; Maria Anders
+            [3] =&gt; Maria Anders
+        )
+
+    [1] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; BLAUS
+            [1] =&gt; BLAUS
+            [empresa] =&gt; Blauer See Delikatessen
+            [2] =&gt; Blauer See Delikatessen
+            [contacto] =&gt; Hanna Moos
+            [3] =&gt; Hanna Moos
+        )
+
+    [2] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; DRACD
+            [1] =&gt; DRACD
+            [empresa] =&gt; Drachenblut Delikatessen
+            [2] =&gt; Drachenblut Delikatessen
+            [contacto] =&gt; Sven Ottlieb
+            [3] =&gt; Sven Ottlieb
+        )
+
+    [3] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; FRANK
+            [1] =&gt; FRANK
+            [empresa] =&gt; Frankenversand
+            [2] =&gt; Frankenversand
+            [contacto] =&gt; Peter Franken
+            [3] =&gt; Peter Franken
+        )
+
+    [4] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; KOENE
+            [1] =&gt; KOENE
+            [empresa] =&gt; Königlich Essen
+            [2] =&gt; Königlich Essen
+            [contacto] =&gt; Philip Cramer
+            [3] =&gt; Philip Cramer
+        )
+
+    [5] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; LEHMS
+            [1] =&gt; LEHMS
+            [empresa] =&gt; Lehmanns Marktstand
+            [2] =&gt; Lehmanns Marktstand
+            [contacto] =&gt; Renate Messner
+            [3] =&gt; Renate Messner
+        )
+
+    [6] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; MORGK
+            [1] =&gt; MORGK
+            [empresa] =&gt; Morgenstern Gesundkost
+            [2] =&gt; Morgenstern Gesundkost
+            [contacto] =&gt; Alexander Feuer
+            [3] =&gt; Alexander Feuer
+        )
+
+    [7] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; OTTIK
+            [1] =&gt; OTTIK
+            [empresa] =&gt; Ottilies Käseladen
+            [2] =&gt; Ottilies Käseladen
+            [contacto] =&gt; Henriette Pfalzheim
+            [3] =&gt; Henriette Pfalzheim
+        )
+
+    [8] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; QUICK
+            [1] =&gt; QUICK
+            [empresa] =&gt; QUICK-Stop
+            [2] =&gt; QUICK-Stop
+            [contacto] =&gt; Horst Kloss
+            [3] =&gt; Horst Kloss
+        )
+
+    [9] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; TOMSP
+            [1] =&gt; TOMSP
+            [empresa] =&gt; Toms Spezialitäten
+            [2] =&gt; Toms Spezialitäten
+            [contacto] =&gt; Karin Josephs
+            [3] =&gt; Karin Josephs
+        )
+
+    [10] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [0] =&gt; Alemania
+            [codigo] =&gt; WANDK
+            [1] =&gt; WANDK
+            [empresa] =&gt; Die Wandernde Kuh
+            [2] =&gt; Die Wandernde Kuh
+            [contacto] =&gt; Rita Müller
+            [3] =&gt; Rita Müller
+        )
+
+    [11] =&gt; Array
+        (
+            [pais] =&gt; Argentina
+            [0] =&gt; Argentina
+            [codigo] =&gt; CACTU
+            [1] =&gt; CACTU
+            [empresa] =&gt; Cactus Comidas para llevar
+            [2] =&gt; Cactus Comidas para llevar
+            [contacto] =&gt; Patricio Simpson
+            [3] =&gt; Patricio Simpson
+        )
+
+    [12] =&gt; Array
+        (
+            [pais] =&gt; Argentina
+            [0] =&gt; Argentina
+            [codigo] =&gt; OCEAN
+            [1] =&gt; OCEAN
+            [empresa] =&gt; Océano Atlántico Ltda.
+            [2] =&gt; Océano Atlántico Ltda.
+            [contacto] =&gt; Yvonne Moncada
+            [3] =&gt; Yvonne Moncada
+        )
+
+    [13] =&gt; Array
+        (
+            [pais] =&gt; Argentina
+            [0] =&gt; Argentina
+            [codigo] =&gt; RANCH
+            [1] =&gt; RANCH
+            [empresa] =&gt; Rancho grande
+            [2] =&gt; Rancho grande
+            [contacto] =&gt; Sergio Gutiérrez
+            [3] =&gt; Sergio Gutiérrez
+        )
+
+    [14] =&gt; Array
+        (
+            [pais] =&gt; Austria
+            [0] =&gt; Austria
+            [codigo] =&gt; ERNSH
+            [1] =&gt; ERNSH
+            [empresa] =&gt; Ernst Handel
+            [2] =&gt; Ernst Handel
+            [contacto] =&gt; Roland Mendel
+            [3] =&gt; Roland Mendel
+        )
+
+    [15] =&gt; Array
+        (
+            [pais] =&gt; Austria
+            [0] =&gt; Austria
+            [codigo] =&gt; PICCO
+            [1] =&gt; PICCO
+            [empresa] =&gt; Piccolo und mehr
+            [2] =&gt; Piccolo und mehr
+            [contacto] =&gt; Georg Pipps
+            [3] =&gt; Georg Pipps
+        )
+
+    [16] =&gt; Array
+        (
+            [pais] =&gt; Bélgica
+            [0] =&gt; Bélgica
+            [codigo] =&gt; MAISD
+            [1] =&gt; MAISD
+            [empresa] =&gt; Maison Dewey
+            [2] =&gt; Maison Dewey
+            [contacto] =&gt; Catherine Dewey
+            [3] =&gt; Catherine Dewey
+        )
+
+    [17] =&gt; Array
+        (
+            [pais] =&gt; Bélgica
+            [0] =&gt; Bélgica
+            [codigo] =&gt; SUPRD
+            [1] =&gt; SUPRD
+            [empresa] =&gt; Suprêmes délices
+            [2] =&gt; Suprêmes délices
+            [contacto] =&gt; Pascale Cartrain
+            [3] =&gt; Pascale Cartrain
+        )
+
+    [18] =&gt; Array
+        (
+            [pais] =&gt; Brasil
+            [0] =&gt; Brasil
+            [codigo] =&gt; COMMI
+            [1] =&gt; COMMI
+            [empresa] =&gt; Comércio Mineiro
+            [2] =&gt; Comércio Mineiro
+            [contacto] =&gt; Pedro Afonso
+            [3] =&gt; Pedro Afonso
+        )
+
+    [19] =&gt; Array
+        (
+            [pais] =&gt; Brasil
+            [0] =&gt; Brasil
+            [codigo] =&gt; FAMIA
+            [1] =&gt; FAMIA
+            [empresa] =&gt; Familia Arquibaldo
+            [2] =&gt; Familia Arquibaldo
+            [contacto] =&gt; Aria Cruz
+            [3] =&gt; Aria Cruz
+        )
+
+)
+</pre>
+
+    <h2 id="f2">fetchAll(PDO::FETCH_ASSOC)</h2>
+    <p>Array indexado de arrays asociativos</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [0] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; ALFKI
+            [empresa] =&gt; Alfreds Futterkiste
+            [contacto] =&gt; Maria Anders
+        )
+
+    [1] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; BLAUS
+            [empresa] =&gt; Blauer See Delikatessen
+            [contacto] =&gt; Hanna Moos
+        )
+
+    [2] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; DRACD
+            [empresa] =&gt; Drachenblut Delikatessen
+            [contacto] =&gt; Sven Ottlieb
+        )
+
+    [3] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; FRANK
+            [empresa] =&gt; Frankenversand
+            [contacto] =&gt; Peter Franken
+        )
+
+    [4] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; KOENE
+            [empresa] =&gt; Königlich Essen
+            [contacto] =&gt; Philip Cramer
+        )
+
+    [5] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; LEHMS
+            [empresa] =&gt; Lehmanns Marktstand
+            [contacto] =&gt; Renate Messner
+        )
+
+    [6] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; MORGK
+            [empresa] =&gt; Morgenstern Gesundkost
+            [contacto] =&gt; Alexander Feuer
+        )
+
+    [7] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; OTTIK
+            [empresa] =&gt; Ottilies Käseladen
+            [contacto] =&gt; Henriette Pfalzheim
+        )
+
+    [8] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; QUICK
+            [empresa] =&gt; QUICK-Stop
+            [contacto] =&gt; Horst Kloss
+        )
+
+    [9] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; TOMSP
+            [empresa] =&gt; Toms Spezialitäten
+            [contacto] =&gt; Karin Josephs
+        )
+
+    [10] =&gt; Array
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; WANDK
+            [empresa] =&gt; Die Wandernde Kuh
+            [contacto] =&gt; Rita Müller
+        )
+
+    [11] =&gt; Array
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; CACTU
+            [empresa] =&gt; Cactus Comidas para llevar
+            [contacto] =&gt; Patricio Simpson
+        )
+
+    [12] =&gt; Array
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; OCEAN
+            [empresa] =&gt; Océano Atlántico Ltda.
+            [contacto] =&gt; Yvonne Moncada
+        )
+
+    [13] =&gt; Array
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; RANCH
+            [empresa] =&gt; Rancho grande
+            [contacto] =&gt; Sergio Gutiérrez
+        )
+
+    [14] =&gt; Array
+        (
+            [pais] =&gt; Austria
+            [codigo] =&gt; ERNSH
+            [empresa] =&gt; Ernst Handel
+            [contacto] =&gt; Roland Mendel
+        )
+
+    [15] =&gt; Array
+        (
+            [pais] =&gt; Austria
+            [codigo] =&gt; PICCO
+            [empresa] =&gt; Piccolo und mehr
+            [contacto] =&gt; Georg Pipps
+        )
+
+    [16] =&gt; Array
+        (
+            [pais] =&gt; Bélgica
+            [codigo] =&gt; MAISD
+            [empresa] =&gt; Maison Dewey
+            [contacto] =&gt; Catherine Dewey
+        )
+
+    [17] =&gt; Array
+        (
+            [pais] =&gt; Bélgica
+            [codigo] =&gt; SUPRD
+            [empresa] =&gt; Suprêmes délices
+            [contacto] =&gt; Pascale Cartrain
+        )
+
+    [18] =&gt; Array
+        (
+            [pais] =&gt; Brasil
+            [codigo] =&gt; COMMI
+            [empresa] =&gt; Comércio Mineiro
+            [contacto] =&gt; Pedro Afonso
+        )
+
+    [19] =&gt; Array
+        (
+            [pais] =&gt; Brasil
+            [codigo] =&gt; FAMIA
+            [empresa] =&gt; Familia Arquibaldo
+            [contacto] =&gt; Aria Cruz
+        )
+
+)
+</pre>
+
+    <h2 id="fa">fetchAll(PDO::FETCH_OBJ)</h2>
+    <p>Array indexado de objetos</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [0] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; ALFKI
+            [empresa] =&gt; Alfreds Futterkiste
+            [contacto] =&gt; Maria Anders
+        )
+
+    [1] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; BLAUS
+            [empresa] =&gt; Blauer See Delikatessen
+            [contacto] =&gt; Hanna Moos
+        )
+
+    [2] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; DRACD
+            [empresa] =&gt; Drachenblut Delikatessen
+            [contacto] =&gt; Sven Ottlieb
+        )
+
+    [3] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; FRANK
+            [empresa] =&gt; Frankenversand
+            [contacto] =&gt; Peter Franken
+        )
+
+    [4] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; KOENE
+            [empresa] =&gt; Königlich Essen
+            [contacto] =&gt; Philip Cramer
+        )
+
+    [5] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; LEHMS
+            [empresa] =&gt; Lehmanns Marktstand
+            [contacto] =&gt; Renate Messner
+        )
+
+    [6] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; MORGK
+            [empresa] =&gt; Morgenstern Gesundkost
+            [contacto] =&gt; Alexander Feuer
+        )
+
+    [7] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; OTTIK
+            [empresa] =&gt; Ottilies Käseladen
+            [contacto] =&gt; Henriette Pfalzheim
+        )
+
+    [8] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; QUICK
+            [empresa] =&gt; QUICK-Stop
+            [contacto] =&gt; Horst Kloss
+        )
+
+    [9] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; TOMSP
+            [empresa] =&gt; Toms Spezialitäten
+            [contacto] =&gt; Karin Josephs
+        )
+
+    [10] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; WANDK
+            [empresa] =&gt; Die Wandernde Kuh
+            [contacto] =&gt; Rita Müller
+        )
+
+    [11] =&gt; stdClass Object
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; CACTU
+            [empresa] =&gt; Cactus Comidas para llevar
+            [contacto] =&gt; Patricio Simpson
+        )
+
+    [12] =&gt; stdClass Object
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; OCEAN
+            [empresa] =&gt; Océano Atlántico Ltda.
+            [contacto] =&gt; Yvonne Moncada
+        )
+
+    [13] =&gt; stdClass Object
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; RANCH
+            [empresa] =&gt; Rancho grande
+            [contacto] =&gt; Sergio Gutiérrez
+        )
+
+    [14] =&gt; stdClass Object
+        (
+            [pais] =&gt; Austria
+            [codigo] =&gt; ERNSH
+            [empresa] =&gt; Ernst Handel
+            [contacto] =&gt; Roland Mendel
+        )
+
+    [15] =&gt; stdClass Object
+        (
+            [pais] =&gt; Austria
+            [codigo] =&gt; PICCO
+            [empresa] =&gt; Piccolo und mehr
+            [contacto] =&gt; Georg Pipps
+        )
+
+    [16] =&gt; stdClass Object
+        (
+            [pais] =&gt; Bélgica
+            [codigo] =&gt; MAISD
+            [empresa] =&gt; Maison Dewey
+            [contacto] =&gt; Catherine Dewey
+        )
+
+    [17] =&gt; stdClass Object
+        (
+            [pais] =&gt; Bélgica
+            [codigo] =&gt; SUPRD
+            [empresa] =&gt; Suprêmes délices
+            [contacto] =&gt; Pascale Cartrain
+        )
+
+    [18] =&gt; stdClass Object
+        (
+            [pais] =&gt; Brasil
+            [codigo] =&gt; COMMI
+            [empresa] =&gt; Comércio Mineiro
+            [contacto] =&gt; Pedro Afonso
+        )
+
+    [19] =&gt; stdClass Object
+        (
+            [pais] =&gt; Brasil
+            [codigo] =&gt; FAMIA
+            [empresa] =&gt; Familia Arquibaldo
+            [contacto] =&gt; Aria Cruz
+        )
+
+)
+</pre>
+
+    <h2 id="f3">fetchAll(PDO::FETCH_CLASS)</h2>
+    <p>Array indexado de objetos</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [0] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; ALFKI
+            [empresa] =&gt; Alfreds Futterkiste
+            [contacto] =&gt; Maria Anders
+        )
+
+    [1] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; BLAUS
+            [empresa] =&gt; Blauer See Delikatessen
+            [contacto] =&gt; Hanna Moos
+        )
+
+    [2] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; DRACD
+            [empresa] =&gt; Drachenblut Delikatessen
+            [contacto] =&gt; Sven Ottlieb
+        )
+
+    [3] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; FRANK
+            [empresa] =&gt; Frankenversand
+            [contacto] =&gt; Peter Franken
+        )
+
+    [4] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; KOENE
+            [empresa] =&gt; Königlich Essen
+            [contacto] =&gt; Philip Cramer
+        )
+
+    [5] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; LEHMS
+            [empresa] =&gt; Lehmanns Marktstand
+            [contacto] =&gt; Renate Messner
+        )
+
+    [6] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; MORGK
+            [empresa] =&gt; Morgenstern Gesundkost
+            [contacto] =&gt; Alexander Feuer
+        )
+
+    [7] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; OTTIK
+            [empresa] =&gt; Ottilies Käseladen
+            [contacto] =&gt; Henriette Pfalzheim
+        )
+
+    [8] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; QUICK
+            [empresa] =&gt; QUICK-Stop
+            [contacto] =&gt; Horst Kloss
+        )
+
+    [9] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; TOMSP
+            [empresa] =&gt; Toms Spezialitäten
+            [contacto] =&gt; Karin Josephs
+        )
+
+    [10] =&gt; stdClass Object
+        (
+            [pais] =&gt; Alemania
+            [codigo] =&gt; WANDK
+            [empresa] =&gt; Die Wandernde Kuh
+            [contacto] =&gt; Rita Müller
+        )
+
+    [11] =&gt; stdClass Object
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; CACTU
+            [empresa] =&gt; Cactus Comidas para llevar
+            [contacto] =&gt; Patricio Simpson
+        )
+
+    [12] =&gt; stdClass Object
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; OCEAN
+            [empresa] =&gt; Océano Atlántico Ltda.
+            [contacto] =&gt; Yvonne Moncada
+        )
+
+    [13] =&gt; stdClass Object
+        (
+            [pais] =&gt; Argentina
+            [codigo] =&gt; RANCH
+            [empresa] =&gt; Rancho grande
+            [contacto] =&gt; Sergio Gutiérrez
+        )
+
+    [14] =&gt; stdClass Object
+        (
+            [pais] =&gt; Austria
+            [codigo] =&gt; ERNSH
+            [empresa] =&gt; Ernst Handel
+            [contacto] =&gt; Roland Mendel
+        )
+
+    [15] =&gt; stdClass Object
+        (
+            [pais] =&gt; Austria
+            [codigo] =&gt; PICCO
+            [empresa] =&gt; Piccolo und mehr
+            [contacto] =&gt; Georg Pipps
+        )
+
+    [16] =&gt; stdClass Object
+        (
+            [pais] =&gt; Bélgica
+            [codigo] =&gt; MAISD
+            [empresa] =&gt; Maison Dewey
+            [contacto] =&gt; Catherine Dewey
+        )
+
+    [17] =&gt; stdClass Object
+        (
+            [pais] =&gt; Bélgica
+            [codigo] =&gt; SUPRD
+            [empresa] =&gt; Suprêmes délices
+            [contacto] =&gt; Pascale Cartrain
+        )
+
+    [18] =&gt; stdClass Object
+        (
+            [pais] =&gt; Brasil
+            [codigo] =&gt; COMMI
+            [empresa] =&gt; Comércio Mineiro
+            [contacto] =&gt; Pedro Afonso
+        )
+
+    [19] =&gt; stdClass Object
+        (
+            [pais] =&gt; Brasil
+            [codigo] =&gt; FAMIA
+            [empresa] =&gt; Familia Arquibaldo
+            [contacto] =&gt; Aria Cruz
+        )
+
+)
+</pre>
+
+    <h2 id="f4">fetchAll(PDO::FETCH_COLUMN)</h2>
+    <p>Array indexado de los valores de la primera columna</p>
+    <pre>SELECT codigo, empresa
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [0] =&gt; ALFKI
+    [1] =&gt; ANATR
+    [2] =&gt; ANTON
+    [3] =&gt; AROUT
+    [4] =&gt; BERGS
+    [5] =&gt; BLAUS
+    [6] =&gt; BLONP
+    [7] =&gt; BOLID
+    [8] =&gt; BONAP
+    [9] =&gt; BOTTM
+    [10] =&gt; BSBEV
+    [11] =&gt; CACTU
+    [12] =&gt; CENTC
+    [13] =&gt; CHOPS
+    [14] =&gt; COMMI
+    [15] =&gt; CONSH
+    [16] =&gt; DRACD
+    [17] =&gt; DUMON
+    [18] =&gt; EASTC
+    [19] =&gt; ERNSH
+)
+</pre>
+
+    <h2 id="f5">fetchAll(PDO::FETCH_NUM)</h2>
+    <p>Array indexado de arrays indexados</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [0] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; ALFKI
+            [2] =&gt; Alfreds Futterkiste
+            [3] =&gt; Maria Anders
+        )
+
+    [1] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; BLAUS
+            [2] =&gt; Blauer See Delikatessen
+            [3] =&gt; Hanna Moos
+        )
+
+    [2] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; DRACD
+            [2] =&gt; Drachenblut Delikatessen
+            [3] =&gt; Sven Ottlieb
+        )
+
+    [3] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; FRANK
+            [2] =&gt; Frankenversand
+            [3] =&gt; Peter Franken
+        )
+
+    [4] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; KOENE
+            [2] =&gt; Königlich Essen
+            [3] =&gt; Philip Cramer
+        )
+
+    [5] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; LEHMS
+            [2] =&gt; Lehmanns Marktstand
+            [3] =&gt; Renate Messner
+        )
+
+    [6] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; MORGK
+            [2] =&gt; Morgenstern Gesundkost
+            [3] =&gt; Alexander Feuer
+        )
+
+    [7] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; OTTIK
+            [2] =&gt; Ottilies Käseladen
+            [3] =&gt; Henriette Pfalzheim
+        )
+
+    [8] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; QUICK
+            [2] =&gt; QUICK-Stop
+            [3] =&gt; Horst Kloss
+        )
+
+    [9] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; TOMSP
+            [2] =&gt; Toms Spezialitäten
+            [3] =&gt; Karin Josephs
+        )
+
+    [10] =&gt; Array
+        (
+            [0] =&gt; Alemania
+            [1] =&gt; WANDK
+            [2] =&gt; Die Wandernde Kuh
+            [3] =&gt; Rita Müller
+        )
+
+    [11] =&gt; Array
+        (
+            [0] =&gt; Argentina
+            [1] =&gt; CACTU
+            [2] =&gt; Cactus Comidas para llevar
+            [3] =&gt; Patricio Simpson
+        )
+
+    [12] =&gt; Array
+        (
+            [0] =&gt; Argentina
+            [1] =&gt; OCEAN
+            [2] =&gt; Océano Atlántico Ltda.
+            [3] =&gt; Yvonne Moncada
+        )
+
+    [13] =&gt; Array
+        (
+            [0] =&gt; Argentina
+            [1] =&gt; RANCH
+            [2] =&gt; Rancho grande
+            [3] =&gt; Sergio Gutiérrez
+        )
+
+    [14] =&gt; Array
+        (
+            [0] =&gt; Austria
+            [1] =&gt; ERNSH
+            [2] =&gt; Ernst Handel
+            [3] =&gt; Roland Mendel
+        )
+
+    [15] =&gt; Array
+        (
+            [0] =&gt; Austria
+            [1] =&gt; PICCO
+            [2] =&gt; Piccolo und mehr
+            [3] =&gt; Georg Pipps
+        )
+
+    [16] =&gt; Array
+        (
+            [0] =&gt; Bélgica
+            [1] =&gt; MAISD
+            [2] =&gt; Maison Dewey
+            [3] =&gt; Catherine Dewey
+        )
+
+    [17] =&gt; Array
+        (
+            [0] =&gt; Bélgica
+            [1] =&gt; SUPRD
+            [2] =&gt; Suprêmes délices
+            [3] =&gt; Pascale Cartrain
+        )
+
+    [18] =&gt; Array
+        (
+            [0] =&gt; Brasil
+            [1] =&gt; COMMI
+            [2] =&gt; Comércio Mineiro
+            [3] =&gt; Pedro Afonso
+        )
+
+    [19] =&gt; Array
+        (
+            [0] =&gt; Brasil
+            [1] =&gt; FAMIA
+            [2] =&gt; Familia Arquibaldo
+            [3] =&gt; Aria Cruz
+        )
+
+)
+</pre>
+
+    <h2 id="f6">fetchAll(PDO::FETCH_GROUP)</h2>
+    <p>Array asociativo de arrays indexados de arrays indexados y asociativos</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [Alemania] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; ALFKI
+                    [0] =&gt; ALFKI
+                    [empresa] =&gt; Alfreds Futterkiste
+                    [1] =&gt; Alfreds Futterkiste
+                    [contacto] =&gt; Maria Anders
+                    [2] =&gt; Maria Anders
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; BLAUS
+                    [0] =&gt; BLAUS
+                    [empresa] =&gt; Blauer See Delikatessen
+                    [1] =&gt; Blauer See Delikatessen
+                    [contacto] =&gt; Hanna Moos
+                    [2] =&gt; Hanna Moos
+                )
+
+            [2] =&gt; Array
+                (
+                    [codigo] =&gt; DRACD
+                    [0] =&gt; DRACD
+                    [empresa] =&gt; Drachenblut Delikatessen
+                    [1] =&gt; Drachenblut Delikatessen
+                    [contacto] =&gt; Sven Ottlieb
+                    [2] =&gt; Sven Ottlieb
+                )
+
+            [3] =&gt; Array
+                (
+                    [codigo] =&gt; FRANK
+                    [0] =&gt; FRANK
+                    [empresa] =&gt; Frankenversand
+                    [1] =&gt; Frankenversand
+                    [contacto] =&gt; Peter Franken
+                    [2] =&gt; Peter Franken
+                )
+
+            [4] =&gt; Array
+                (
+                    [codigo] =&gt; KOENE
+                    [0] =&gt; KOENE
+                    [empresa] =&gt; Königlich Essen
+                    [1] =&gt; Königlich Essen
+                    [contacto] =&gt; Philip Cramer
+                    [2] =&gt; Philip Cramer
+                )
+
+            [5] =&gt; Array
+                (
+                    [codigo] =&gt; LEHMS
+                    [0] =&gt; LEHMS
+                    [empresa] =&gt; Lehmanns Marktstand
+                    [1] =&gt; Lehmanns Marktstand
+                    [contacto] =&gt; Renate Messner
+                    [2] =&gt; Renate Messner
+                )
+
+            [6] =&gt; Array
+                (
+                    [codigo] =&gt; MORGK
+                    [0] =&gt; MORGK
+                    [empresa] =&gt; Morgenstern Gesundkost
+                    [1] =&gt; Morgenstern Gesundkost
+                    [contacto] =&gt; Alexander Feuer
+                    [2] =&gt; Alexander Feuer
+                )
+
+            [7] =&gt; Array
+                (
+                    [codigo] =&gt; OTTIK
+                    [0] =&gt; OTTIK
+                    [empresa] =&gt; Ottilies Käseladen
+                    [1] =&gt; Ottilies Käseladen
+                    [contacto] =&gt; Henriette Pfalzheim
+                    [2] =&gt; Henriette Pfalzheim
+                )
+
+            [8] =&gt; Array
+                (
+                    [codigo] =&gt; QUICK
+                    [0] =&gt; QUICK
+                    [empresa] =&gt; QUICK-Stop
+                    [1] =&gt; QUICK-Stop
+                    [contacto] =&gt; Horst Kloss
+                    [2] =&gt; Horst Kloss
+                )
+
+            [9] =&gt; Array
+                (
+                    [codigo] =&gt; TOMSP
+                    [0] =&gt; TOMSP
+                    [empresa] =&gt; Toms Spezialitäten
+                    [1] =&gt; Toms Spezialitäten
+                    [contacto] =&gt; Karin Josephs
+                    [2] =&gt; Karin Josephs
+                )
+
+            [10] =&gt; Array
+                (
+                    [codigo] =&gt; WANDK
+                    [0] =&gt; WANDK
+                    [empresa] =&gt; Die Wandernde Kuh
+                    [1] =&gt; Die Wandernde Kuh
+                    [contacto] =&gt; Rita Müller
+                    [2] =&gt; Rita Müller
+                )
+
+        )
+
+    [Argentina] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; CACTU
+                    [0] =&gt; CACTU
+                    [empresa] =&gt; Cactus Comidas para llevar
+                    [1] =&gt; Cactus Comidas para llevar
+                    [contacto] =&gt; Patricio Simpson
+                    [2] =&gt; Patricio Simpson
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; OCEAN
+                    [0] =&gt; OCEAN
+                    [empresa] =&gt; Océano Atlántico Ltda.
+                    [1] =&gt; Océano Atlántico Ltda.
+                    [contacto] =&gt; Yvonne Moncada
+                    [2] =&gt; Yvonne Moncada
+                )
+
+            [2] =&gt; Array
+                (
+                    [codigo] =&gt; RANCH
+                    [0] =&gt; RANCH
+                    [empresa] =&gt; Rancho grande
+                    [1] =&gt; Rancho grande
+                    [contacto] =&gt; Sergio Gutiérrez
+                    [2] =&gt; Sergio Gutiérrez
+                )
+
+        )
+
+    [Austria] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; ERNSH
+                    [0] =&gt; ERNSH
+                    [empresa] =&gt; Ernst Handel
+                    [1] =&gt; Ernst Handel
+                    [contacto] =&gt; Roland Mendel
+                    [2] =&gt; Roland Mendel
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; PICCO
+                    [0] =&gt; PICCO
+                    [empresa] =&gt; Piccolo und mehr
+                    [1] =&gt; Piccolo und mehr
+                    [contacto] =&gt; Georg Pipps
+                    [2] =&gt; Georg Pipps
+                )
+
+        )
+
+    [Bélgica] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; MAISD
+                    [0] =&gt; MAISD
+                    [empresa] =&gt; Maison Dewey
+                    [1] =&gt; Maison Dewey
+                    [contacto] =&gt; Catherine Dewey
+                    [2] =&gt; Catherine Dewey
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; SUPRD
+                    [0] =&gt; SUPRD
+                    [empresa] =&gt; Suprêmes délices
+                    [1] =&gt; Suprêmes délices
+                    [contacto] =&gt; Pascale Cartrain
+                    [2] =&gt; Pascale Cartrain
+                )
+
+        )
+
+    [Brasil] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; COMMI
+                    [0] =&gt; COMMI
+                    [empresa] =&gt; Comércio Mineiro
+                    [1] =&gt; Comércio Mineiro
+                    [contacto] =&gt; Pedro Afonso
+                    [2] =&gt; Pedro Afonso
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; FAMIA
+                    [0] =&gt; FAMIA
+                    [empresa] =&gt; Familia Arquibaldo
+                    [1] =&gt; Familia Arquibaldo
+                    [contacto] =&gt; Aria Cruz
+                    [2] =&gt; Aria Cruz
+                )
+
+        )
+
+)
+</pre>
+
+    <h2 id="f7">fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC)</h2>
+    <p>Array asociativo de arrays indexados de arrays asociativos</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [Alemania] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; ALFKI
+                    [empresa] =&gt; Alfreds Futterkiste
+                    [contacto] =&gt; Maria Anders
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; BLAUS
+                    [empresa] =&gt; Blauer See Delikatessen
+                    [contacto] =&gt; Hanna Moos
+                )
+
+            [2] =&gt; Array
+                (
+                    [codigo] =&gt; DRACD
+                    [empresa] =&gt; Drachenblut Delikatessen
+                    [contacto] =&gt; Sven Ottlieb
+                )
+
+            [3] =&gt; Array
+                (
+                    [codigo] =&gt; FRANK
+                    [empresa] =&gt; Frankenversand
+                    [contacto] =&gt; Peter Franken
+                )
+
+            [4] =&gt; Array
+                (
+                    [codigo] =&gt; KOENE
+                    [empresa] =&gt; Königlich Essen
+                    [contacto] =&gt; Philip Cramer
+                )
+
+            [5] =&gt; Array
+                (
+                    [codigo] =&gt; LEHMS
+                    [empresa] =&gt; Lehmanns Marktstand
+                    [contacto] =&gt; Renate Messner
+                )
+
+            [6] =&gt; Array
+                (
+                    [codigo] =&gt; MORGK
+                    [empresa] =&gt; Morgenstern Gesundkost
+                    [contacto] =&gt; Alexander Feuer
+                )
+
+            [7] =&gt; Array
+                (
+                    [codigo] =&gt; OTTIK
+                    [empresa] =&gt; Ottilies Käseladen
+                    [contacto] =&gt; Henriette Pfalzheim
+                )
+
+            [8] =&gt; Array
+                (
+                    [codigo] =&gt; QUICK
+                    [empresa] =&gt; QUICK-Stop
+                    [contacto] =&gt; Horst Kloss
+                )
+
+            [9] =&gt; Array
+                (
+                    [codigo] =&gt; TOMSP
+                    [empresa] =&gt; Toms Spezialitäten
+                    [contacto] =&gt; Karin Josephs
+                )
+
+            [10] =&gt; Array
+                (
+                    [codigo] =&gt; WANDK
+                    [empresa] =&gt; Die Wandernde Kuh
+                    [contacto] =&gt; Rita Müller
+                )
+
+        )
+
+    [Argentina] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; CACTU
+                    [empresa] =&gt; Cactus Comidas para llevar
+                    [contacto] =&gt; Patricio Simpson
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; OCEAN
+                    [empresa] =&gt; Océano Atlántico Ltda.
+                    [contacto] =&gt; Yvonne Moncada
+                )
+
+            [2] =&gt; Array
+                (
+                    [codigo] =&gt; RANCH
+                    [empresa] =&gt; Rancho grande
+                    [contacto] =&gt; Sergio Gutiérrez
+                )
+
+        )
+
+    [Austria] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; ERNSH
+                    [empresa] =&gt; Ernst Handel
+                    [contacto] =&gt; Roland Mendel
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; PICCO
+                    [empresa] =&gt; Piccolo und mehr
+                    [contacto] =&gt; Georg Pipps
+                )
+
+        )
+
+    [Bélgica] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; MAISD
+                    [empresa] =&gt; Maison Dewey
+                    [contacto] =&gt; Catherine Dewey
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; SUPRD
+                    [empresa] =&gt; Suprêmes délices
+                    [contacto] =&gt; Pascale Cartrain
+                )
+
+        )
+
+    [Brasil] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [codigo] =&gt; COMMI
+                    [empresa] =&gt; Comércio Mineiro
+                    [contacto] =&gt; Pedro Afonso
+                )
+
+            [1] =&gt; Array
+                (
+                    [codigo] =&gt; FAMIA
+                    [empresa] =&gt; Familia Arquibaldo
+                    [contacto] =&gt; Aria Cruz
+                )
+
+        )
+
+)
+</pre>
+
+    <h2 id="f8">fetchAll(PDO::FETCH_GROUP|PDO::FETCH_NUM)</h2>
+    <p>Array asociativo de arrays indexados de arrays indexados</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [Alemania] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; ALFKI
+                    [1] =&gt; Alfreds Futterkiste
+                    [2] =&gt; Maria Anders
+                )
+
+            [1] =&gt; Array
+                (
+                    [0] =&gt; BLAUS
+                    [1] =&gt; Blauer See Delikatessen
+                    [2] =&gt; Hanna Moos
+                )
+
+            [2] =&gt; Array
+                (
+                    [0] =&gt; DRACD
+                    [1] =&gt; Drachenblut Delikatessen
+                    [2] =&gt; Sven Ottlieb
+                )
+
+            [3] =&gt; Array
+                (
+                    [0] =&gt; FRANK
+                    [1] =&gt; Frankenversand
+                    [2] =&gt; Peter Franken
+                )
+
+            [4] =&gt; Array
+                (
+                    [0] =&gt; KOENE
+                    [1] =&gt; Königlich Essen
+                    [2] =&gt; Philip Cramer
+                )
+
+            [5] =&gt; Array
+                (
+                    [0] =&gt; LEHMS
+                    [1] =&gt; Lehmanns Marktstand
+                    [2] =&gt; Renate Messner
+                )
+
+            [6] =&gt; Array
+                (
+                    [0] =&gt; MORGK
+                    [1] =&gt; Morgenstern Gesundkost
+                    [2] =&gt; Alexander Feuer
+                )
+
+            [7] =&gt; Array
+                (
+                    [0] =&gt; OTTIK
+                    [1] =&gt; Ottilies Käseladen
+                    [2] =&gt; Henriette Pfalzheim
+                )
+
+            [8] =&gt; Array
+                (
+                    [0] =&gt; QUICK
+                    [1] =&gt; QUICK-Stop
+                    [2] =&gt; Horst Kloss
+                )
+
+            [9] =&gt; Array
+                (
+                    [0] =&gt; TOMSP
+                    [1] =&gt; Toms Spezialitäten
+                    [2] =&gt; Karin Josephs
+                )
+
+            [10] =&gt; Array
+                (
+                    [0] =&gt; WANDK
+                    [1] =&gt; Die Wandernde Kuh
+                    [2] =&gt; Rita Müller
+                )
+
+        )
+
+    [Argentina] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; CACTU
+                    [1] =&gt; Cactus Comidas para llevar
+                    [2] =&gt; Patricio Simpson
+                )
+
+            [1] =&gt; Array
+                (
+                    [0] =&gt; OCEAN
+                    [1] =&gt; Océano Atlántico Ltda.
+                    [2] =&gt; Yvonne Moncada
+                )
+
+            [2] =&gt; Array
+                (
+                    [0] =&gt; RANCH
+                    [1] =&gt; Rancho grande
+                    [2] =&gt; Sergio Gutiérrez
+                )
+
+        )
+
+    [Austria] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; ERNSH
+                    [1] =&gt; Ernst Handel
+                    [2] =&gt; Roland Mendel
+                )
+
+            [1] =&gt; Array
+                (
+                    [0] =&gt; PICCO
+                    [1] =&gt; Piccolo und mehr
+                    [2] =&gt; Georg Pipps
+                )
+
+        )
+
+    [Bélgica] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; MAISD
+                    [1] =&gt; Maison Dewey
+                    [2] =&gt; Catherine Dewey
+                )
+
+            [1] =&gt; Array
+                (
+                    [0] =&gt; SUPRD
+                    [1] =&gt; Suprêmes délices
+                    [2] =&gt; Pascale Cartrain
+                )
+
+        )
+
+    [Brasil] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; COMMI
+                    [1] =&gt; Comércio Mineiro
+                    [2] =&gt; Pedro Afonso
+                )
+
+            [1] =&gt; Array
+                (
+                    [0] =&gt; FAMIA
+                    [1] =&gt; Familia Arquibaldo
+                    [2] =&gt; Aria Cruz
+                )
+
+        )
+
+)
+</pre>
+
+    <h2 id="f9">fetchAll(PDO::FETCH_GROUP|PDO::FETCH_COLUMN)</h2>
+    <p>Array asociativo de arrays indexados</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [Alemania] =&gt; Array
+        (
+            [0] =&gt; ALFKI
+            [1] =&gt; BLAUS
+            [2] =&gt; DRACD
+            [3] =&gt; FRANK
+            [4] =&gt; KOENE
+            [5] =&gt; LEHMS
+            [6] =&gt; MORGK
+            [7] =&gt; OTTIK
+            [8] =&gt; QUICK
+            [9] =&gt; TOMSP
+            [10] =&gt; WANDK
+        )
+
+    [Argentina] =&gt; Array
+        (
+            [0] =&gt; CACTU
+            [1] =&gt; OCEAN
+            [2] =&gt; RANCH
+        )
+
+    [Austria] =&gt; Array
+        (
+            [0] =&gt; ERNSH
+            [1] =&gt; PICCO
+        )
+
+    [Bélgica] =&gt; Array
+        (
+            [0] =&gt; MAISD
+            [1] =&gt; SUPRD
+        )
+
+    [Brasil] =&gt; Array
+        (
+            [0] =&gt; COMMI
+            [1] =&gt; FAMIA
+        )
+
+)
+</pre>
+
+    <h2 id="fb">fetch(PDO::FETCH_LAZY)</h2>
+    <p>Datos obtenidos bajo demanda</p>
+    <pre>SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>PDORow Object
+(
+    [queryString] =&gt; SELECT pais, codigo, empresa, contacto
+    FROM clientes ORDER BY 1, 2 LIMIT 20
+    [pais] =&gt; Alemania
+    [codigo] =&gt; ALFKI
+    [empresa] =&gt; Alfreds Futterkiste
+    [contacto] =&gt; Maria Anders
+)
+</pre>
+
+    <h2 id="fc">fetchAll(PDO::FETCH_KEY_PAIR)</h2>
+    <p>Array asociativo</p>
+    <pre>SELECT codigo, empresa
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [ALFKI] =&gt; Alfreds Futterkiste
+    [ANATR] =&gt; Ana Trujillo Emparedados y helados
+    [ANTON] =&gt; Antonio Moreno Taquería
+    [AROUT] =&gt; Around the Horn
+    [BERGS] =&gt; Berglunds snabbköp
+    [BLAUS] =&gt; Blauer See Delikatessen
+    [BLONP] =&gt; Blondel père et fils
+    [BOLID] =&gt; Bólido Comidas preparadas
+    [BONAP] =&gt; Bon app'
+    [BOTTM] =&gt; Bottom-Dollar Markets
+    [BSBEV] =&gt; B's Beverages
+    [CACTU] =&gt; Cactus Comidas para llevar
+    [CENTC] =&gt; Centro comercial Moctezuma
+    [CHOPS] =&gt; Chop-suey Chinese
+    [COMMI] =&gt; Comércio Mineiro
+    [CONSH] =&gt; Consolidated Holdings
+    [DRACD] =&gt; Drachenblut Delikatessen
+    [DUMON] =&gt; Du monde entier
+    [EASTC] =&gt; Eastern Connection
+    [ERNSH] =&gt; Ernst Handel
+)
+</pre>
+
+    <h2 id="fd">fetchAll(PDO::FETCH_UNIQUE)</h2>
+    <p>Array asociativo de array indexado y asociativo</p>
+    <pre>SELECT codigo, empresa, contacto, pais
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [ALFKI] =&gt; Array
+        (
+            [empresa] =&gt; Alfreds Futterkiste
+            [0] =&gt; Alfreds Futterkiste
+            [contacto] =&gt; Maria Anders
+            [1] =&gt; Maria Anders
+            [pais] =&gt; Alemania
+            [2] =&gt; Alemania
+        )
+
+    [ANATR] =&gt; Array
+        (
+            [empresa] =&gt; Ana Trujillo Emparedados y helados
+            [0] =&gt; Ana Trujillo Emparedados y helados
+            [contacto] =&gt; Ana Trujillo
+            [1] =&gt; Ana Trujillo
+            [pais] =&gt; México
+            [2] =&gt; México
+        )
+
+    [ANTON] =&gt; Array
+        (
+            [empresa] =&gt; Antonio Moreno Taquería
+            [0] =&gt; Antonio Moreno Taquería
+            [contacto] =&gt; Antonio Moreno
+            [1] =&gt; Antonio Moreno
+            [pais] =&gt; México
+            [2] =&gt; México
+        )
+
+    [AROUT] =&gt; Array
+        (
+            [empresa] =&gt; Around the Horn
+            [0] =&gt; Around the Horn
+            [contacto] =&gt; Thomas Hardy
+            [1] =&gt; Thomas Hardy
+            [pais] =&gt; Reino Unido
+            [2] =&gt; Reino Unido
+        )
+
+    [BERGS] =&gt; Array
+        (
+            [empresa] =&gt; Berglunds snabbköp
+            [0] =&gt; Berglunds snabbköp
+            [contacto] =&gt; Christina Berglund
+            [1] =&gt; Christina Berglund
+            [pais] =&gt; Suecia
+            [2] =&gt; Suecia
+        )
+
+    [BLAUS] =&gt; Array
+        (
+            [empresa] =&gt; Blauer See Delikatessen
+            [0] =&gt; Blauer See Delikatessen
+            [contacto] =&gt; Hanna Moos
+            [1] =&gt; Hanna Moos
+            [pais] =&gt; Alemania
+            [2] =&gt; Alemania
+        )
+
+    [BLONP] =&gt; Array
+        (
+            [empresa] =&gt; Blondel père et fils
+            [0] =&gt; Blondel père et fils
+            [contacto] =&gt; Frédérique Citeaux
+            [1] =&gt; Frédérique Citeaux
+            [pais] =&gt; Francia
+            [2] =&gt; Francia
+        )
+
+    [BOLID] =&gt; Array
+        (
+            [empresa] =&gt; Bólido Comidas preparadas
+            [0] =&gt; Bólido Comidas preparadas
+            [contacto] =&gt; Martín Sommer
+            [1] =&gt; Martín Sommer
+            [pais] =&gt; España
+            [2] =&gt; España
+        )
+
+    [BONAP] =&gt; Array
+        (
+            [empresa] =&gt; Bon app'
+            [0] =&gt; Bon app'
+            [contacto] =&gt; Laurence Lebihan
+            [1] =&gt; Laurence Lebihan
+            [pais] =&gt; Francia
+            [2] =&gt; Francia
+        )
+
+    [BOTTM] =&gt; Array
+        (
+            [empresa] =&gt; Bottom-Dollar Markets
+            [0] =&gt; Bottom-Dollar Markets
+            [contacto] =&gt; Elizabeth Lincoln
+            [1] =&gt; Elizabeth Lincoln
+            [pais] =&gt; Canadá
+            [2] =&gt; Canadá
+        )
+
+    [BSBEV] =&gt; Array
+        (
+            [empresa] =&gt; B's Beverages
+            [0] =&gt; B's Beverages
+            [contacto] =&gt; Victoria Ashworth
+            [1] =&gt; Victoria Ashworth
+            [pais] =&gt; Reino Unido
+            [2] =&gt; Reino Unido
+        )
+
+    [CACTU] =&gt; Array
+        (
+            [empresa] =&gt; Cactus Comidas para llevar
+            [0] =&gt; Cactus Comidas para llevar
+            [contacto] =&gt; Patricio Simpson
+            [1] =&gt; Patricio Simpson
+            [pais] =&gt; Argentina
+            [2] =&gt; Argentina
+        )
+
+    [CENTC] =&gt; Array
+        (
+            [empresa] =&gt; Centro comercial Moctezuma
+            [0] =&gt; Centro comercial Moctezuma
+            [contacto] =&gt; Francisco Chang
+            [1] =&gt; Francisco Chang
+            [pais] =&gt; México
+            [2] =&gt; México
+        )
+
+    [CHOPS] =&gt; Array
+        (
+            [empresa] =&gt; Chop-suey Chinese
+            [0] =&gt; Chop-suey Chinese
+            [contacto] =&gt; Yang Wang
+            [1] =&gt; Yang Wang
+            [pais] =&gt; Suiza
+            [2] =&gt; Suiza
+        )
+
+    [COMMI] =&gt; Array
+        (
+            [empresa] =&gt; Comércio Mineiro
+            [0] =&gt; Comércio Mineiro
+            [contacto] =&gt; Pedro Afonso
+            [1] =&gt; Pedro Afonso
+            [pais] =&gt; Brasil
+            [2] =&gt; Brasil
+        )
+
+    [CONSH] =&gt; Array
+        (
+            [empresa] =&gt; Consolidated Holdings
+            [0] =&gt; Consolidated Holdings
+            [contacto] =&gt; Elizabeth Brown
+            [1] =&gt; Elizabeth Brown
+            [pais] =&gt; Reino Unido
+            [2] =&gt; Reino Unido
+        )
+
+    [DRACD] =&gt; Array
+        (
+            [empresa] =&gt; Drachenblut Delikatessen
+            [0] =&gt; Drachenblut Delikatessen
+            [contacto] =&gt; Sven Ottlieb
+            [1] =&gt; Sven Ottlieb
+            [pais] =&gt; Alemania
+            [2] =&gt; Alemania
+        )
+
+    [DUMON] =&gt; Array
+        (
+            [empresa] =&gt; Du monde entier
+            [0] =&gt; Du monde entier
+            [contacto] =&gt; Janine Labrune
+            [1] =&gt; Janine Labrune
+            [pais] =&gt; Francia
+            [2] =&gt; Francia
+        )
+
+    [EASTC] =&gt; Array
+        (
+            [empresa] =&gt; Eastern Connection
+            [0] =&gt; Eastern Connection
+            [contacto] =&gt; Ann Devon
+            [1] =&gt; Ann Devon
+            [pais] =&gt; Reino Unido
+            [2] =&gt; Reino Unido
+        )
+
+    [ERNSH] =&gt; Array
+        (
+            [empresa] =&gt; Ernst Handel
+            [0] =&gt; Ernst Handel
+            [contacto] =&gt; Roland Mendel
+            [1] =&gt; Roland Mendel
+            [pais] =&gt; Austria
+            [2] =&gt; Austria
+        )
+
+)
+</pre>
+
+    <h2 id="fe">fetchAll(PDO::FETCH_UNIQUE|PDO::FETCH_ASSOC)</h2>
+    <p>Array asociativo de array asociativo</p>
+    <pre>SELECT codigo, empresa, contacto, pais
+    FROM clientes ORDER BY 1, 2 LIMIT 20</pre><br>
+    <pre>Array
+(
+    [ALFKI] =&gt; Array
+        (
+            [empresa] =&gt; Alfreds Futterkiste
+            [contacto] =&gt; Maria Anders
+            [pais] =&gt; Alemania
+        )
+
+    [ANATR] =&gt; Array
+        (
+            [empresa] =&gt; Ana Trujillo Emparedados y helados
+            [contacto] =&gt; Ana Trujillo
+            [pais] =&gt; México
+        )
+
+    [ANTON] =&gt; Array
+        (
+            [empresa] =&gt; Antonio Moreno Taquería
+            [contacto] =&gt; Antonio Moreno
+            [pais] =&gt; México
+        )
+
+    [AROUT] =&gt; Array
+        (
+            [empresa] =&gt; Around the Horn
+            [contacto] =&gt; Thomas Hardy
+            [pais] =&gt; Reino Unido
+        )
+
+    [BERGS] =&gt; Array
+        (
+            [empresa] =&gt; Berglunds snabbköp
+            [contacto] =&gt; Christina Berglund
+            [pais] =&gt; Suecia
+        )
+
+    [BLAUS] =&gt; Array
+        (
+            [empresa] =&gt; Blauer See Delikatessen
+            [contacto] =&gt; Hanna Moos
+            [pais] =&gt; Alemania
+        )
+
+    [BLONP] =&gt; Array
+        (
+            [empresa] =&gt; Blondel père et fils
+            [contacto] =&gt; Frédérique Citeaux
+            [pais] =&gt; Francia
+        )
+
+    [BOLID] =&gt; Array
+        (
+            [empresa] =&gt; Bólido Comidas preparadas
+            [contacto] =&gt; Martín Sommer
+            [pais] =&gt; España
+        )
+
+    [BONAP] =&gt; Array
+        (
+            [empresa] =&gt; Bon app'
+            [contacto] =&gt; Laurence Lebihan
+            [pais] =&gt; Francia
+        )
+
+    [BOTTM] =&gt; Array
+        (
+            [empresa] =&gt; Bottom-Dollar Markets
+            [contacto] =&gt; Elizabeth Lincoln
+            [pais] =&gt; Canadá
+        )
+
+    [BSBEV] =&gt; Array
+        (
+            [empresa] =&gt; B's Beverages
+            [contacto] =&gt; Victoria Ashworth
+            [pais] =&gt; Reino Unido
+        )
+
+    [CACTU] =&gt; Array
+        (
+            [empresa] =&gt; Cactus Comidas para llevar
+            [contacto] =&gt; Patricio Simpson
+            [pais] =&gt; Argentina
+        )
+
+    [CENTC] =&gt; Array
+        (
+            [empresa] =&gt; Centro comercial Moctezuma
+            [contacto] =&gt; Francisco Chang
+            [pais] =&gt; México
+        )
+
+    [CHOPS] =&gt; Array
+        (
+            [empresa] =&gt; Chop-suey Chinese
+            [contacto] =&gt; Yang Wang
+            [pais] =&gt; Suiza
+        )
+
+    [COMMI] =&gt; Array
+        (
+            [empresa] =&gt; Comércio Mineiro
+            [contacto] =&gt; Pedro Afonso
+            [pais] =&gt; Brasil
+        )
+
+    [CONSH] =&gt; Array
+        (
+            [empresa] =&gt; Consolidated Holdings
+            [contacto] =&gt; Elizabeth Brown
+            [pais] =&gt; Reino Unido
+        )
+
+    [DRACD] =&gt; Array
+        (
+            [empresa] =&gt; Drachenblut Delikatessen
+            [contacto] =&gt; Sven Ottlieb
+            [pais] =&gt; Alemania
+        )
+
+    [DUMON] =&gt; Array
+        (
+            [empresa] =&gt; Du monde entier
+            [contacto] =&gt; Janine Labrune
+            [pais] =&gt; Francia
+        )
+
+    [EASTC] =&gt; Array
+        (
+            [empresa] =&gt; Eastern Connection
+            [contacto] =&gt; Ann Devon
+            [pais] =&gt; Reino Unido
+        )
+
+    [ERNSH] =&gt; Array
+        (
+            [empresa] =&gt; Ernst Handel
+            [contacto] =&gt; Roland Mendel
+            [pais] =&gt; Austria
+        )
+
+)
+</pre>
+
+  </section>
+
+
+</body></html>
